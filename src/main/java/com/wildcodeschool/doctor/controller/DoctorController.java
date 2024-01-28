@@ -17,13 +17,9 @@ public class DoctorController {
     public Doctor doctor(@PathVariable int number) {
         if (number>=1 && number<=12)
             throw new ResponseStatusException(HttpStatus.valueOf(303));
-
+        if ((number == 13)) {
+            return new Doctor(13, "Jodie Whittaker");
+        }
         throw new ResponseStatusException(HttpStatus.valueOf(404), "Impossible de récupérer l'incarnation " + number);
-    }
-    
-    @GetMapping("/doctor/13")
-    @ResponseBody
-    public Doctor doctor13() {
-        return new Doctor(13, "Jodie Whittaker");
     }
 }
